@@ -1,0 +1,48 @@
+{
+    "banner": {
+      "title": "ONE HUNDRED AVENUES",
+      "subtitle": "ARCHITECTS OF UNFORGETTABLE TRAVEL EXPERIENCES",
+      "video": "assets/HomePage/homepage.mp4"
+    },
+    "about": {
+      "title": "About Us",
+      "description": "At One Hundred Avenues, we connect discerning influencers, entrepreneurs, and travel industry advisors to exceptional destinations, hotels, and unique culinary and travel experiences. We excel in crafting bespoke retreats for content creators and their clientele, ensuring that each journey is unforgettable and meticulously tailored to their vision and desires!",
+      "buttonText": "Find Out More",
+      "buttonLink": "/About"
+    },
+    "whatsNew": [
+      {
+        "title": "Travel to Greece",
+        "description": "Explore the beauty of Greece with our exclusive tours.",
+        "image": "assets/HomePage/greece.jpg"
+      },
+      {
+        "title": "Resort in Maldives",
+        "description": "Experience the luxury in Maldives with special offers.",
+        "image": "assets/HomePage/maldives.jpg"
+      },
+      {
+        "title": "Italian Coastal Retreat",
+        "description": "Discover the Italian coasts and their vibrant culture.",
+        "image": "assets/HomePage/italian_coast.jpg"
+      },
+      {
+        "title": "Luxury African Safari",
+        "description": "An unforgettable safari experience with world-class guides.",
+        "image": "assets/HomePage/safari.jpg"
+      }
+    ],
+    "exclusiveAccess": {
+      "title": "Get Exclusive Access!",
+      "description": "Our Insiders' Circle gets access to our latest promotions, updates, and ongoing booking incentives.",
+      "spamText": "Don't worry, we hate spam too!"
+    },
+    "payingHomage": {
+      "title": "Paying Homage to The Art of Extraordinary Travel",
+      "subtitle": "One Hundred Avenues",
+      "backgroundImage": "assets/HomePage/Portfolio.webp",
+      "buttonText": "Download our Portfolio",
+      "buttonLink": "assets/100 Avenues Portfolio.pdf"
+    }
+  }
+  

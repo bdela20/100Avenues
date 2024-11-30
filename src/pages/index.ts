@@ -1,0 +1,7 @@
+export * from './About'
+export * from './Contact'
+export * from './Hotels'
+export * from './Home'
+export * from './Newsletter'
+export * from './Retreats'
+export * from './terms'
