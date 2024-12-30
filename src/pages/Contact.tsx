@@ -1,88 +1,191 @@
-import React from 'react';
-import backgroundImage from '../assets/HomePage/contact.webp'; // Make sure the path is correct.
+// Import necessary dependencies
+import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 
-function Contact() {
+const Contact = () => {
+  // State for form data and success message
+  const [formData, setFormData] = useState<{
+    firstName: string;
+    lastName: string;
+    email: string;
+    address: string;
+    message: string;
+    services: string[]; // Explicitly define the type for `services`
+  }>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    address: '',
+    message: '',
+    services: [],
+  });
+
+  const [successMessage, setSuccessMessage] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    setFormData((prevData) => {
+      const services = checked
+        ? [...prevData.services, value]
+        : prevData.services.filter((service) => service !== value);
+      return { ...prevData, services };
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        'freelancer', // Replace with your EmailJS service ID
+        'TreeRemovalSpecialist', // Replace with your EmailJS template ID
+        {
+          ...formData,
+          services: formData.services.join(', '),
+        },
+        '6KIUg3hWzQVtkkgwI' // Replace with your EmailJS user ID
+      )
+      .then(
+        () => {
+          setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            address: '',
+            message: '',
+            services: [],
+          });
+          setSuccessMessage(true);
+          setTimeout(() => setSuccessMessage(false), 3000);
+        },
+        (error) => {
+          console.error('Error sending message:', error);
+        }
+      );
+  };
+
   return (
     <div>
-      {/* Top section with background image and text */}
-      <div
+      {/* Contact Us Section */}
+      <section
         style={{
-          position: 'relative',
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          marginBottom: '.5rem',
-          height: '50vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          color: 'white',
-          textAlign: 'center',
+          marginTop: '8rem',
+          padding: '2rem',
+          border: '1px solid #ddd',
+          borderRadius: '8px',
         }}
       >
-        <h1 style={{ fontSize: '3rem', fontFamily: "Playfair Display, serif", fontWeight: 'bold', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.6)', marginBottom: '1rem' }}>
-          Connect with us
-        </h1>
-        <p style={{ fontSize: '1.2rem', fontFamily: "Avenir, sans-serif", textShadow: '1px 1px 3px rgba(0, 0, 0, 0.5)' }}>
-          Have any questions or comments for us? <br />
-          Please feel free to email us below or connect with us on social media!
-        </p>
-      </div>
-
-      {/* Middle section with email */}
-      <div style={{ textAlign: 'center', fontFamily: "Avenir, sans-serif", margin: '1rem 0', fontSize: '1.2rem', color: '#333' }}>
-        <p>hello@onehundredavenues.com</p>
-      </div>
-
-      {/* Bottom section with form */}
-      <div className="contactForm" style={{ maxWidth: '600px', margin: '0 auto' }}>
-        <form style={{ display: 'grid', fontFamily: "Avenir, sans-serif", gap: '1rem' }}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            required
-            style={{ padding: '0.8rem', borderRadius: '5px', border: '1px solid #ddd' }}
-          />
+        <h2 style={{ fontSize: '2rem', color: '#28a745', textAlign: 'center' }}>Contact Us!</h2>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1.5rem',
+            maxWidth: '600px',
+            margin: 'auto',
+          }}
+        >
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              required
+              style={{ flex: '1', padding: '1rem', borderRadius: '4px', border: '1px solid #ccc' }}
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              required
+              style={{ flex: '1', padding: '1rem', borderRadius: '4px', border: '1px solid #ccc' }}
+            />
+          </div>
           <input
             type="email"
             name="email"
             placeholder="Email"
+            value={formData.email}
+            onChange={handleInputChange}
             required
-            style={{ padding: '0.8rem', borderRadius: '5px', border: '1px solid #ddd' }}
+            style={{ padding: '1rem', borderRadius: '4px', border: '1px solid #ccc' }}
           />
           <input
             type="text"
-            name="subject"
-            placeholder="Subject"
-            style={{ padding: '0.8rem', borderRadius: '5px', border: '1px solid #ddd' }}
+            name="address"
+            placeholder="Address (Optional)"
+            value={formData.address}
+            onChange={handleInputChange}
+            style={{ padding: '1rem', borderRadius: '4px', border: '1px solid #ccc' }}
           />
           <textarea
             name="message"
-            placeholder="Type your message here..."
+            placeholder="Tell us about your project..."
+            value={formData.message}
+            onChange={handleInputChange}
             required
-            style={{ padding: '0.8rem', borderRadius: '5px', border: '1px solid #ddd', minHeight: '150px' }}
-          ></textarea>
+            style={{ padding: '1rem', borderRadius: '4px', border: '1px solid #ccc', height: '150px' }}
+          />
+          <div
+            style={{
+              padding: '1rem',
+              border: '1px solid #ccc',
+              borderRadius: '8px',
+              background: '#f9f9f9',
+            }}
+          >
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Services</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.5rem' }}>
+              {['Tree Removal', 'Tree Trimming', 'Stump Removal', 'Fall and Spring Clean Up', 'Emergency Services', 'Land Clearing'].map(
+                (service) => (
+                  <label key={service}>
+                    <input
+                      type="checkbox"
+                      value={service}
+                      checked={formData.services.includes(service)}
+                      onChange={handleCheckboxChange}
+                    />{' '}
+                    {service}
+                  </label>
+                )
+              )}
+            </div>
+          </div>
           <button
             type="submit"
             style={{
-              padding: '0.8rem',
-              backgroundColor: "#c68a30",
-              color: '#fff',
-              border: 'none',
+              padding: '1rem 2rem',
               borderRadius: '4px',
+              backgroundColor: '#28a745',
+              color: 'white',
+              fontSize: '1rem',
               cursor: 'pointer',
-              fontWeight: 'bold',
-              fontFamily: "Avenir, sans-serif",
             }}
           >
             Submit
           </button>
         </form>
-      </div>
+        {successMessage && (
+          <p style={{ textAlign: 'center', marginTop: '1rem', color: 'green' }}>
+            {successMessage}
+          </p>
+        )}
+      </section>
     </div>
   );
-}
+};
 
 export default Contact;

@@ -3,28 +3,42 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: "#f8f8f8", padding: "2rem 0", textAlign: "center" }}>
-      <div className="socialIcons" style={{ marginBottom: "1rem" }}>
-        <a href="https://www.instagram.com/100avenuestravel/" target="_blank" rel="noopener noreferrer" style={{ margin: "0 10px", color: "#333", fontSize: "1.5rem" }}>
-          <i className="fab fa-instagram"></i>
+    <footer style={{ 
+      backgroundColor: "#000", // Black background
+      padding: "1rem 0", // Smaller padding for reduced height
+      textAlign: "center",
+      color: "#fff" // White text
+    }}>
+      <div className="socialIcons" style={{ marginBottom: "0.5rem" }}>
+        <a 
+          href="https://www.facebook.com/Thetreeremovalspc/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          style={{ margin: "0 10px", color: "#fff", fontSize: "1.2rem" }} // White icon color
+        >
+          <i className="fab fa-facebook"></i>
         </a>
-        <a href="https://www.tiktok.com/@100avenuestravel" target="_blank" rel="noopener noreferrer" style={{ margin: "0 10px", color: "#333", fontSize: "1.5rem" }}>
-          <i className="fab fa-tiktok"></i>
-        </a>
-        <a href="https://www.linkedin.com/company/one-hundred-avenues" target="_blank" rel="noopener noreferrer" style={{ margin: "0 10px", color: "#333", fontSize: "1.5rem" }}>
-          <i className="fab fa-linkedin"></i>
+        <a 
+          href="https://www.google.com/maps/place/The+Tree+Removal+Specialist/@28.5426545,-81.3957791,10z/data=!3m1!4b1!4m6!3m5!1s0x661f0d5a9deae671:0xddf40fe24c634e97!8m2!3d28.5426544!4d-81.3957792!16s%2Fg%2F11srgwchk_?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          style={{ margin: "0 10px", color: "#fff", fontSize: "1.2rem" }} // White icon color
+        >
+          <i className="fab fa-google"></i>
         </a>
       </div>
-      <p style={{ color: "#666", fontFamily: "Avenir, sans-serif", fontSize: "0.9rem" }}>
-        ©2024 by One Hundred Avenues. All Rights Reserved. <br />
-        <Link to="/Terms" style={{ color: "#007bff", textDecoration: "none" }}>
+      <p style={{ 
+        color: "#fff", // White text
+        fontFamily: "Avenir, sans-serif", 
+        fontSize: "1rem" // Slightly smaller font
+      }}>
+        ©2025 All Rights Reserved. <br />
+        {/* <Link to="/Terms" style={{ color: "#007bff", textDecoration: "none" }}>
           Terms & Conditions
-        </Link>.
+        </Link>. */}
       </p>
     </footer>
   );
 };
 
 export default Footer;
-
-  

@@ -1,5 +1,4 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
-// import './app.css' 
 import routes from './config/routes';
 import Navbar from './components/Navbar'; // Import the Navbar component
 import Footer from './components/Footer'; // Import the Footer component
@@ -12,7 +11,7 @@ function App() {
 
       {/* Render your Routes */}
       <Routes>
-        {routes.map((route: any, index: number) => (
+        {routes.map((route, index) => (
           <Route
             key={index}
             path={route.path}

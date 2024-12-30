@@ -1,7 +1,12 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "jsx": "react-jsx", // Enables the new JSX transform
+    "strict": true, // Optional but recommended for TypeScript strict mode
+    "esModuleInterop": true, // Ensures compatibility with CommonJS modules
+    "skipLibCheck": true, // Speeds up TypeScript compilation
+    "moduleResolution": "node", // For resolving Node.js modules
+    "module": "ESNext", // Supports modern JavaScript modules
+    "target": "ES6" // Specifies ECMAScript target version
+  }
 }
+
